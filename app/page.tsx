@@ -1,8 +1,9 @@
+import MapFilterItem from "./components/MapFilterItem";
 
 export default function Home() {
   return (
-    <div>
-      Hello
+    <div className="container mx-auto px-5 lg:px-10">
+      <MapFilterItem />
     </div>
   );
 }
