@@ -1,5 +1,6 @@
 import SelectedCategory from '@/app/components/SelectedCategory'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 import React from 'react'
 
 export default function StructureRoute() {
@@ -16,7 +17,10 @@ export default function StructureRoute() {
 
             <div className='fixed w-full bottom-0 z-10 bg-white border-t h-24'>
               <div className='flex items-center justify-between mx-auto px-5 lg:px-10 h-full'>
-                <Button>Cancel</Button>
+                <Button variant="secondary" size="lg" asChild>
+                  <Link href="/">Cancel</Link>
+                </Button>
+                <Button size="lg">Save</Button>
               </div>
             </div>
         </form>
