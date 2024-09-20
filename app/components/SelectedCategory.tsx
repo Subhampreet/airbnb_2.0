@@ -8,7 +8,7 @@ import Image from 'next/image'
 export default function SelectedCategory() {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   return (
-    <div className='grid grid-cols-4 gap-8 mt-10 w-3/5 mx-auto'>
+    <div className='grid grid-cols-4 gap-8 mt-10 w-3/5 mx-auto mb-36'>
         {categoryItems.map((item) => (
             <div key={item.id} className='cursor-pointer'>
                 <Card className={selectedCategory === item.name ? "border-primary border-2" : ""}
