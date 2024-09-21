@@ -1,4 +1,5 @@
 import { createCategoryPage } from '@/app/action'
+import CreationBottomBar from '@/app/components/CreationBottomBar'
 import SelectedCategory from '@/app/components/SelectedCategory'
 import CreationSubmit from '@/app/components/SubmitButton'
 import { Button } from '@/components/ui/button'
@@ -18,14 +19,7 @@ export default function StructureRoute({params} : {params: {id: string}}) {
             <input type='hidden' name='homeId' value={params.id} />
             <SelectedCategory />
 
-            <div className='fixed w-full bottom-0 z-10 bg-white border-t h-24'>
-              <div className='flex items-center justify-between mx-auto px-5 lg:px-10 h-full'>
-                <Button variant="secondary" size="lg" asChild>
-                  <Link href="/">Cancel</Link>
-                </Button>
-                <CreationSubmit />
-              </div>
-            </div>
+            <CreationBottomBar />
         </form>
     </>
   )
