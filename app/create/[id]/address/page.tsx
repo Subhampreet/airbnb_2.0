@@ -1,7 +1,9 @@
-import { Select, SelectContent, SelectGroup, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { useCountries } from '@/app/lib/getCountries'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 import React from 'react'
 
 export default function page() {
+    const {getAllCountries} = useCountries();
   return (
     <>
         <div className='w-3/5 mx-auto'>
@@ -20,6 +22,13 @@ export default function page() {
                         <SelectContent>
                             <SelectGroup>
                                 <SelectLabel>Countries</SelectLabel>
+                                {
+                                    getAllCountries().map((item) => (
+                                        <SelectItem key={item.value} value={item.value}>
+                                            {item.flag} {item.label} / {item.region}
+                                        </SelectItem>
+                                    ))
+                                }
                             </SelectGroup>
                         </SelectContent>
                     </Select>
