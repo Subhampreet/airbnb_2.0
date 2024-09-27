@@ -1,6 +1,7 @@
 "use client"
 
 
+import { createLocation } from '@/app/action';
 import CreationBottomBar from '@/app/components/CreationBottomBar';
 import Map from '@/app/components/Map';
 import { useCountries } from '@/app/lib/getCountries'
@@ -9,7 +10,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import dynamic from 'next/dynamic';
 import React, { useState } from 'react'
 
-export default function page() {
+export default function page({params} : {params: {id : string}}) {
     const {getAllCountries} = useCountries();
 
     const [locationValue, setLocationValue] = useState("")
@@ -24,7 +25,9 @@ export default function page() {
             </h2>
         </div>
 
-        <form>
+        <form action={createLocation}>
+            <input type="hidden" name='homeId' value={params.id} />
+            <input type="hidden" name='countryValue' value={locationValue} />
             <div className='w-3/5 mx-auto mb-36'>
                 <div className='mb-5'>
                     <Select required onValueChange={(value) => setLocationValue(value)}>
