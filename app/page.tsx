@@ -26,7 +26,7 @@ export default async function Home() {
   const data = await getData();
 
   return (
-    <div className="container mx-auto px-5 lg:px-10">
+    <div className="container mx-auto px-5 lg:px-10 mb-10">
       <MapFilterItem />
 
       <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8">

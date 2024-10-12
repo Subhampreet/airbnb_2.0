@@ -21,7 +21,7 @@ export default function ListingCard({ description, price, location, imagePath }:
                     src={`https://umkyviuvcwmjhrhnmmvl.supabase.co/storage/v1/object/public/images/${imagePath}`}
                     alt='Image of property'
                     fill
-                    className='rounded-lg h-full object-cover mb-3'
+                    className='rounded-lg h-full object-cover'
                 />
             </div>
 
