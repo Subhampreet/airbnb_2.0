@@ -4,9 +4,10 @@ import MapFilterItem from "./components/MapFilterItem";
 import prisma from "./lib/db";
 import { SkeletonCard } from "./components/SkeletonCard";
 import { NoItems } from "./components/NoItem";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 
-async function getData({ searchParams, }: { searchParams?: { filter?: string }; }) {
+async function getData({ searchParams, userId }: { userId: string | undefined, searchParams?: { filter?: string }; }) {
   const data = await prisma.home.findMany({
     where: {
       addedCategory: true,
@@ -19,6 +20,11 @@ async function getData({ searchParams, }: { searchParams?: { filter?: string }; 
       price: true,
       description: true,
       country: true,
+      Favourite: {
+        where: {
+          userId: userId ?? undefined
+        }
+      }
     }
   });
 
@@ -42,7 +48,9 @@ export default function Home({ searchParams, }: { searchParams?: { filter?: stri
 
 
 async function ShowItems({ searchParams, }: { searchParams?: { filter?: string }; }) {
-  const data = await getData({ searchParams: searchParams });
+  const {getUser} = getKindeServerSession();
+  const user = await getUser();
+  const data = await getData({ searchParams: searchParams, userId : user?.id });
 
   return (
     <>
@@ -54,7 +62,8 @@ async function ShowItems({ searchParams, }: { searchParams?: { filter?: string }
           <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8">
             {
               data.map((item) => (
-                <ListingCard key={item.id} description={item.description as string} imagePath={item.photo as string} location={item.country as string} price={item.price as number} />
+                <ListingCard key={item.id} description={item.description as string} imagePath={item.photo as string} location={item.country as string} price={item.price as number} userId={user?.id} favoriteId={item.Favourite[0]?.id}
+                isInFavoriteList={item.Favourite.length > 0 ? true : false} homeId={item.id} pathName="/" />
               ))
             }
           </div>
