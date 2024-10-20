@@ -40,7 +40,7 @@ export default async function UserNav() {
                                 <Link href="/my-home" className="w-full">My Listings</Link>
                             </DropdownMenuItem>
                             <DropdownMenuItem>
-                                <Link href="/favourite" className="w-full">Favourites</Link>
+                                <Link href="/favourite" className="w-full">My Favourites</Link>
                             </DropdownMenuItem>
                             <DropdownMenuItem>
                                 <Link href="/reservations" className="w-full">My Reservations</Link>
